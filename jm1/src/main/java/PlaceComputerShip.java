@@ -20,6 +20,9 @@ public class PlaceComputerShip {
             computerMap[y][x] = "S";
             System.out.println(i + ". Parinkta laivo vieta.");
             ++i;
+
         }
+
+
     }
 }

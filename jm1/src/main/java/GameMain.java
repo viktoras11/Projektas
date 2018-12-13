@@ -26,6 +26,7 @@ public class GameMain {
         playerShip.placePlayerShips(playerMap);
         game.createBoard(playerMap);
         computerShip.placeComputerShips(computerMap, playerMap);
+
         game.battle(computerMap, playerMap);
     }
 }
