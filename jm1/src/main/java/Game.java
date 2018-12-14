@@ -1,17 +1,14 @@
 import java.util.Random;
 import java.util.Scanner;
 
-
-
-public class Game  {
+public class Game {
 
     public Scanner input = new Scanner(System.in); // input scanner
     public Random rand = new Random();              // random input
 
     public void createBoard(String[][] seaMap) {
-        System.out.println("");
-        System.out.println("   0 1 2 3 4 5 6 7 8 9");
-        System.out.println("   ____________________");
+        SysOut1 sysOut1 = new SysOut1();
+        sysOut1.cb1();
         for (int i = 0; i < seaMap.length; ++i) {
             System.out.print(i + " |");
             for (int j = 0; j < seaMap[i].length; ++j) {
@@ -20,53 +17,49 @@ public class Game  {
             }
             System.out.println("| ");
         }
-        System.out.println("   ____________________");
-        System.out.println("");
+        sysOut1.cb2();
     }
 
     public void battle(String[][] computerMap, String[][] playerMap){
 
         int playerShipCount = 5, computerShipCount = 5;
         int x1, y1;                                                           // zaidejo koordinates
-
+        SysOut1 sysOut1 = new SysOut1();
         while(playerShipCount > 0 && computerShipCount > 0) {
-            System.out.println("JŪSŲ ĖJIMAS");
-            System.out.print("IVESKITE X KOORDINATĘ: ");        // X koordinates ivedimas
-            x1 = input.nextInt();
+
+            sysOut1.bt1();
+            x1 = input.nextInt();   // X koordinates ivedimas
             while (x1 < 0 || x1 > 9) {
-                System.out.println("NETINKAMA KOORDINATĖ!");
-                System.out.print("IVESKITE X KOORDINATĘ: ");
+                sysOut1.bt2();
                 x1 = input.nextInt();
             }
 
-            System.out.print("IVESKITE Y KOORDINATĘ: ");           // Y koordinates ivedimas
+           sysOut1.bt3();          // Y koordinates ivedimas
             y1 = input.nextInt();
             while (y1 < 0 || y1 > 9) {
-                System.out.println("NETINKAMA KOORDINATĖ!");
-                System.out.print("IVESKITE Y KOORDINATĘ: ");
+                sysOut1.bt4();
                 y1 = input.nextInt();
             }
 
             if(computerMap[y1][x1].equals("S")){
-                System.out.println("TU NUSKANDINAI LAIVA!");
+                sysOut1.bt5();
                 playerMap[y1][x1] = "!";
                 --computerShipCount; //mazejantis kompiuterio laivu skaicius.
             }else if(playerMap[y1][x1].equals("S")){
-                System.out.println("TU NUSKANDINAI SAVO LAIVA!");
+                sysOut1.bt6();
                 playerMap[y1][x1] = "x";
                 --playerShipCount; //mazejantis zaidejo laivu skaicius.
             }else if(playerMap[y1][x1].equals(" ")){
-                System.out.println("TU NEPATAIKEI!");
+                sysOut1.bt7();
                 playerMap[y1][x1] = "-";
             }else{
-                System.out.println("ŠI POZICIJA JAU UŽIMTA!");
+                sysOut1.bt8();
                 continue;
             }
             createBoard(playerMap); /*Spauzdiname zemelapi po zaidejo kiekvieno ejimo*/
             System.out.println("TAVO LAIVAI: " + playerShipCount + " | KOMPIUTERIO LAIVAI: " + computerShipCount);
-            System.out.println("-----------------------------");
 
-            System.out.println("KOMPIUTERIO EILE");
+            sysOut1.bt9();
             int x2, y2; /*spejamos kompiuterio koordinates*/
 
             x2=rand.nextInt(10);
@@ -76,16 +69,16 @@ public class Game  {
                 y2=rand.nextInt(10);
             }
             if(playerMap[y2][x2].equals("S")){
-                System.out.println("KOMPIUTERIS NUSKANDINO TAVO LAIVA!");
+                sysOut1.bt10();
                 playerMap[y2][x2] = "x";
                 --playerShipCount; //mazejantis zaidejo laivu skaicius.
             }else if(computerMap[y2][x2].equals("S")){
-                System.out.println("KOMPIUTERIS NUSKANDINO SAVO LAIVA!");
+                sysOut1.bt11();
                 playerMap[y2][x2] = "!";
                 --computerShipCount; //mazejantis kompiuterrio laivu skaicius.
             }
             else if(computerMap[y2][x2].equals(" ")){
-                System.out.println("KOMPIUTERIS NEPATAIKE");
+                sysOut1.bt12();
                 computerMap[y2][x2] = "-";
             }
             createBoard(playerMap); /*spauzdiname zemelapi po kompiuterio ejimo*/

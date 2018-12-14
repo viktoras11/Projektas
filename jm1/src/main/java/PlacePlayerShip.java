@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-
-
 public class PlacePlayerShip {
 
     public Scanner input = new Scanner(System.in);
@@ -10,13 +8,15 @@ public class PlacePlayerShip {
 
     public void placePlayerShips(String[][] playerMap) {
         int x, y;
-        System.out.println("SURYKIUOKITE SAVO LAIVUS:");
+        SysOut2 sysOut2 = new SysOut2();
+
+        sysOut2.pls1();
         int i = 1;
         while(i <= 5){
             System.out.print("ĮVESKITE  " + i + " LAIVO X KOORDINATĘ: ");
             x = input.nextInt();
             while (x < 0 || x > 9) {                    /*jeigu suvedame per dideli skaiciu*/
-                System.out.println("NETINKAMA KOORDINATĖ!");
+                sysOut2.pls2();
                 System.out.print("ĮVESKITE " + i + " LAIVO X KOORDINATĘ: ");
                 x = input.nextInt();
             }
@@ -24,13 +24,13 @@ public class PlacePlayerShip {
             System.out.print("ĮVESKITE " + i + " LAIVO Y KOORDINATĘ: ");
             y = input.nextInt();
             while (y < 0 || y > 9) {
-                System.out.println("NETINKAMA KOORDINATĖ!");
+                sysOut2.pls3();
                 System.out.print("ĮVESKITE " + i + " LAIVO Y KOORDINATĘ: ");
                 y = input.nextInt();
             }
 
             if(playerMap[y][x].equals("S")) {
-                System.out.println("ŠI POZICIJA JAU UŽIMTA!");
+                sysOut2.pls4();
                 continue;
             }
             playerMap[y][x] = "S";

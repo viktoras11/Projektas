@@ -9,7 +9,9 @@ public class PlaceComputerShip {
 
     public void placeComputerShips(String[][] computerMap, String[][] playerMap){
         int x, y;
-        System.out.println("KOMPIUTERIS IŠDĖSTO SAVO LAIVUS");
+        SysOut3 sysOut3 = new SysOut3();
+
+        sysOut3.pcs1();
         int i = 1;
         while (i <= 5) {
             x = rand.nextInt(10); //Sugeneruojame atsitiktini skaiciu
@@ -18,7 +20,7 @@ public class PlaceComputerShip {
                 continue;
             }
             computerMap[y][x] = "S";
-            System.out.println(i + ". Parinkta laivo vieta.");
+            System.out.print(i + ". Pasirinkta laivo vieta.\n");;
             ++i;
 
         }
